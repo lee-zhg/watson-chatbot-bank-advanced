@@ -4,11 +4,13 @@ In this repo, you are going to use the advanced Watson Assistant features to bui
 
 !["watson-chatbat-advanced"](docs/images/advanced_chatbot01.png)
 
-Instead of typing message when having a conservation with the chatbot, you build an app-like chatbot without the need to build an app. Buttons, dropdown list and etc are used to minimize end users's typing. When buttons are clicked or the option is chosen from the dropdown list, per-configurerd text is entered on the end users' behalf.
+Instead of a text-based chatbot, you build an app-like chatbot without the need to build an app. Buttons, dropdown list and etc are used to minimize end users's typing. When buttons are clicked or the option is chosen from the dropdown list, per-configurerd text is entered on the end users' behalf.
 
 Watson Natural Language Understanding(NLU) and Watson Natural Language Processing(NLP) capabilities embeded in Watson Assistant service help you effectively understand what your customer want to order, such as type of burgers, size of drinks, dine-in or to-go, and so on.
 
 You can have a dressed-up chatbot up and running in no time. When you access the chatbot on a mobile device, the built-in voice input also supports verbal data entry which can greatly enhance the user experience.
+
+!["Architecture"](docs/images/architecture.png)
 
 After you complete the exercise, you will understand how to:
 
@@ -21,14 +23,12 @@ After you complete the exercise, you will understand how to:
 This repo is part of Watson chatbot serial. The entire serial includes
 * [Simple ChatBot](https://github.com/lee-zhg/watson-chatbot-simple.git)
 * [Dressed-up ChatBot](https://github.com/lee-zhg/watson-chatbot-advanced.git)
-* Voice-Enabled ChatBot
-* VoiceBot – Call and speak to ChatBot
+* [Voice-Enabled ChatBot](https://github.com/lee-zhg/watson-voice-enabled-chatbot.git)
+* [VoiceBot – Call and speak to ChatBot](https://github.com/lee-zhg/watson-voicebot.git) 
 
 > **NOTE**: Watson Assistant service is available in IBM Cloud as well as part of IBM Cloud pak for Data. As the result, you can deploy and run your chatbot in public cloud, private cloud, hybird cloud and on-prem.
 
 > Click [here](https://www.ibm.com/products/cloud-pak-for-data) for more information about IBM Cloud Pak for Data.
-
-!["Architecture"](docs/images/architecture.png)
 
 
 ## Use Case Flow
@@ -456,7 +456,7 @@ In this section, you explore dialog flow of the skill `watson-burger`.
 
     Since `watson-burger` skill is designed for food ordering, most of actions are defined in `Order` node branch. The other 3 root nodes do not have child.
 
-* Select the `Welcomeadvanced` node. Its properies show up in the pop-up wiindow on the right. The chatbot enters this node only when it identifies `@order` intent which is the starting point of an ordering conversation.
+* Select the `Welcomeadvanced` node. Its properies show up in the pop-up window on the right. The chatbot enters this node only when it identifies `@order` intent which is the starting point of an ordering conversation.
 
     !["watson-burger Example"](docs/images/advanced_dialog_flow20.png)
 
@@ -468,7 +468,7 @@ In this section, you explore dialog flow of the skill `watson-burger`.
 
     - After the initial messages, images and buttons are displayed, the chatbot waits for end user input. The input can be in the form of end user's typing or the button clicking.
 
-* Select the `Order` node, its properies show up in the pop-up wiindow on the right. The chatbot enters this node only when it identifies `@order` intent.
+* Select the `Order` node, its properies show up in the pop-up window on the right. The chatbot enters this node only when it identifies `@order` intent.
 
 * Expand the `Order` node branch. It has 5 child nodes.
 
