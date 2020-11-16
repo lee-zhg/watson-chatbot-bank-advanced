@@ -274,20 +274,14 @@
           "type": "synonyms",
           "value": "business",
           "synonyms": [
-            "business account",
-            "business checking account",
-            "business credit card account",
-            "business saving account"
+            "business account"
           ]
         },
         {
           "type": "synonyms",
           "value": "personal",
           "synonyms": [
-            "personal account",
-            "personal checking account",
-            "personal credit card account",
-            "personal saving account"
+            "personal account"
           ]
         }
       ],
@@ -855,8 +849,8 @@
         "zipcode": null,
         "typeAccount": null,
         "extra_confirmed": null,
+        "PersonalBusiness": null,
         "contactInfo_zipcode": null,
-        "accountTypePersonalBusiness": null,
         "accountNumber_accoumntNumber": null
       },
       "next_step": {
