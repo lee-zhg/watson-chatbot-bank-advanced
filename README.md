@@ -1,12 +1,12 @@
-# Advanced Burger Ordering Chatbot with Watson Assistant Service
+# Advanced Banking Chatbot with Watson Assistant Service
 
-In this repo, you are going to use the advanced Watson Assistant features to build a dressed-up chatbot for ordering burgers, drinks and etc. 
+In this repo, you are going to use the advanced Watson Assistant features to build a dressed-up chatbot for typical banking use cases. 
 
 !["watson-chatbat-advanced"](docs/images/advanced_chatbot01.png)
 
-Instead of a text-based chatbot, you build an app-like chatbot without the need to build an app. Buttons, dropdown list and etc are used to minimize end users's typing. When buttons are clicked or the option is chosen from the dropdown list, per-configurerd text is entered on the end users' behalf.
+Instead of a text-based chatbot, you build an app-like chatbot without the need to build an app. Buttons, dropdown list and etc are used to minimize end users's typing. When buttons are clicked or the option is chosen from the dropdown list, pre-configurerd text is entered on the end users' behalf.
 
-Watson Natural Language Understanding(NLU) and Watson Natural Language Processing(NLP) capabilities embeded in Watson Assistant service help you effectively understand what your customer want to order, such as type of burgers, size of drinks, dine-in or to-go, and so on.
+Watson Natural Language Understanding(NLU) capabilities embeded in Watson Assistant service help you effectively understand what your customer want to do, such as finding branch office information, open new account and so on.
 
 You can have a dressed-up chatbot up and running in no time. When you access the chatbot on a mobile device, the built-in voice input also supports verbal data entry which can greatly enhance the user experience.
 
@@ -26,7 +26,7 @@ This repo is part of Watson chatbot serial. The entire serial includes
 * [Voice-Enabled ChatBot](https://github.com/lee-zhg/watson-voice-enabled-chatbot.git)
 * [VoiceBot – Call and speak to ChatBot](https://github.com/lee-zhg/watson-voicebot.git) 
 
-> **NOTE**: Watson Assistant service is available in IBM Cloud as well as part of IBM Cloud pak for Data. As the result, you can deploy and run your chatbot in public cloud, private cloud, hybird cloud and on-prem.
+> **NOTE**: Watson Assistant service is available in IBM Cloud as well as part of IBM Cloud Pak for Data. As the result, you can deploy and run your chatbot in public cloud, private cloud, hybird cloud and on-prem.
 
 > Click [here](https://www.ibm.com/products/cloud-pak-for-data) for more information about IBM Cloud Pak for Data.
 
@@ -47,6 +47,7 @@ This repo is part of Watson chatbot serial. The entire serial includes
 
 * [Node.js](https://nodejs.org/): An asynchronous event driven JavaScript runtime, designed to build scalable applications.
 
+
 ## Exercise Flow
 
 ### Step 1 - Clone the repo
@@ -54,19 +55,17 @@ This repo is part of Watson chatbot serial. The entire serial includes
 To clone `watson-chatbot-advanced` locally in a terminal, run:
 
 ```
-$ git clone https://github.com/lee-zhg/watson-chatbot-advanced.git
+$ git clone https://github.com/lee-zhg/watson-chatbot-bank-advanced.git
 
-$ cd watson-chatbot-advanced
+$ cd watson-chatbot-bank-advanced
 ```
 
 We’ll be using the file [`data/skill-watson-burger-advanced.json`](../../data/skill-watson-burger-advanced.json) to upload the Assistant Intents, Entities, and Dialog Nodes.
 
 
-### Step 2 - Create IBM Cloud service
+### Step 2 - Create Watson Assistant service in IBM Cloud
 
-If you have completed the exercise of [Basic Burger Ordering Chatbot with Watson Assistant Service](https://github.com/lee-zhg/watson-chatbot-simple.git), you should have created a `Watson Assistant` service instance in IBM Cloud. You may re-use the sample instance for the exercise in this repo.
-
-In case you don't have a `Watson Assistant` service instance in IBM Cloud, create one and name it `burger-asssistant-service`:
+Create a `Watson Assistant` service instance in IBM Cloud name it `banking-asssistant-service`:
 
 * [**Watson Assistant**](https://cloud.ibm.com/catalog/services/conversation)
 
@@ -91,7 +90,7 @@ Import a `skill` definition that is used by the dressed-up chatbot,
 
 1. Click the link `Drag and drop file here or click to select a file`.
 
-1. Go to your cloned repo dir, and `Open` file [`data/skill-watson-burger.json`](../../data/skill-watson-burger.json).
+1. Go to your cloned repo dir, and `Open` file [`data/skill-watson-burger.json`](data/skill-watson-banking.json).
 
 1. Click `Import`.
 
@@ -102,19 +101,19 @@ The `assistant` is a fully hosted chatbot that is managed by IBM Cloud. It frees
 
 An assistant is a cognitive bot that you can customize for your business needs, and deploy across multiple channels to bring help to your customers where and when they need it. Skills An assistant routes your customer queries to a skill, which then provides the appropriate response. 
 
-#### 4.1 Dialog skill
+#### Step 4.1 - Dialog skill
 
 A `dialog skill` can understand and address questions or requests that your customers typically need help with. You provide information about the subjects or tasks your users ask about, and how they ask about them, and the product dynamically builds a machine learning model that is tailored to understand the same and similar user requests.
 
 A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally.
 
-#### 4.2 Search skill
+#### Step 4.2 - Search skill
 
 A search skill leverages information from existing corporate knowledge bases or other collections of content authored by subject matter experts to address unanticipated or more nuanced customer inquiries.
 
 >Note: Search skill is available to Plus or Premiums plan only.
 
-#### 4.3 Creating an Assistant
+#### Step 4.3 - Creating an Assistant
 
 To create an `assistant`,
 
@@ -128,15 +127,15 @@ To create an `assistant`,
 
 1. Click `Create assistant`.
 
-1. Enter a name, for example `Burger-Advanced`.
+1. Enter a name, for example `Banking-Advanced`.
 
-1. Make sure that the `Enable the preview` checkbox is selected.
+1. Make sure that the `Enable preview link` and `Enable web chat` checkboxs are selected.
 
 1. Click `Create assistant`.
 
 1. Select `Add dialog skill`.
 
-1. Select `watson-burger` skill.
+1. Select `watson-banking` skill.
 
     !["Preview link"](docs/images/assistant01.png)
 
@@ -148,51 +147,83 @@ To create an `assistant`,
 
     !["Preview link"](docs/images/preview02.png)
 
-1. If you have completed the exercise in repo [Basic Burger Ordering Chatbot with Watson Assistant Service](https://github.com/lee-zhg/watson-chatbot-simple.git), the difference is obvious. The basic chatbot is text-based. This dressed-up chatbot is more exciting and extractive. Plus, it helps minimize end users' typing.
+1. The difference between text-based chatbot and dressed-up one is obvious. It is more exciting and extractive. Plus, it helps minimize end users' typing.
 
 
 #### Step 4.4 - Test Drive
 
-When you tested the basic text-based chatbot, you made ordering by entering `I like to have a burger please`. With this new dressed-up chatbot, you can still order your food in the same way. In addition, it offers a convenient way to make an order.
+A dressed-up chatbot provides option to reduce end users' typing during the conversation. With a few clicks, the chatbot will guide you to complete your inquiry and receive desired information. 
+
+However, if you like to bypass the pre-built flow and go straight to your point, you can still type your question. If your inquiry includes all required information to provide an answer, the chatbot will provide the feedback without any prompting.
+
+In this section, you test the `Branch office` feature of the chatbot. The bot collects zipcode and displays the branch office(s) in the area. 
 
 > **Note**: It's up to your application to render advanced Watson Assistant features. If your application does not support the advanced Watson Assistant features, you may not see buttons or dropdown list on the chatbot UI.
 
-##### Order #1
-1. Click `Burger` button. The chatbot types in `Burger` for you.
+##### Step 4.4.1 - Test #1
+1. Click `Branch Information` button. The chatbot types in `Branch Information` for you.
 
 1. The chatbot replies
 
     ```
-    Thank you for your ordering.
-    What type of burger do you want (big mac, cheeseburger, double cheeseburger and etc)?
+    Please enter the zipcode where the branch office locates.
+
+    Please select zipcode
+    15202
+    15209
     ```
 
-1. The chatbot also presents a burger type dropdown list.
+1. Select the `15202`.
 
-1. Select the `Big Mac` from the list.
-
-1. Now, the chatbot collects dining location information and ask `Is this for dine in or to go?`
-
-1. Select `To go` option.
-
-1. Now, the chatbot has all required information and completes the order by displaying 
+1. Now, the chatbot has all required information and provides feedback. 
 
     ```
-    Enjoy your big mac. We are preparing your to-go order
-    ```
-    >**Note**: The chatbot completes the order by displaying the message in larger font. It's possible to use HTML tags to format the messages. This can be done by directly editing JSON obejcts. However, it's up to your application to render the HTML tags properly.
+    Bank branch in zipcode 15202:
 
-##### Order #2
+    470 Lincoln Ave, Pittsburgh, PA 15202
+    (412) 766-1770
 
-1. If you prefer to provide all required information when making a purchase, you can type a complete sentence. For example, `have a hamburger to go`.
-
-1. The chatbot parses the sentence and extracts useful information. It recognizes that it has all required information. So, it completes the order by displaying a message.
-
-    ```
-    Thank you for your ordering.
-    Enjoy your hamburger. We are preparing your to-go order
+    Office Hour:
+    Monday - Friday, 9am - 5pm
+    Saturday, 9am - 1pm
+    Sunday, closed
     ```
 
+    >**Note**: The chatbot can display the message in larger font. It's possible to use HTML tags to format the messages. This can be done by directly editing JSON obejcts. However, it's up to your application to render the HTML tags properly.
+
+1. A picture of the branch office is also available for visdual reference.
+
+##### Step 4.4.2 - Test #2
+
+1. If you prefer to provide all required information when making an inquiry, you can type a complete sentence. For example, `bank office in zipcode 15209`.
+
+1. The chatbot parses the sentence and extracts useful information. It undserstands your `intent` is `branchinfo`, and also identifies and collects `zipcode` information. 
+
+1. The chatbot recognizes that it has all required information. So, it completes the comversation by displaying a message.
+
+    ```
+    Bank branch in zipcode 15209:
+
+    400 Grant Ave, Pittsburgh, PA 15209
+    (412) 821-6600
+
+    Office Hour:
+    Monday - Friday, 9am - 5pm
+    Saturday, 9am - 1pm
+    Sunday, closed
+    ```
+
+##### Step 4.4.3 - Test #3
+
+In a real world scenrio, the chatbot should retrieve branch office information from a database or API to a backend service, and dynamically populate the branch office list. To focus on the key chatbot features, the chatbot is configured to cover two zipcode 15202 and 15209. When you inquire branch office information for other zipcode, you'll be informed that the bot has not been trained to answer your inquiry.
+
+1. Enter `bank office in zipcode 15200`.
+
+1. The chatbot parses the sentence and extracts useful information. It recognizes that it has all required information. So, it travel down the pre-configured dialog flow and eventuall find out that it has been trained to complete the task. 
+
+    ```
+    The chatbot is only trained to help locate branch information for zipcode 15202 and 15209. You entered zipcode 15200. Please try again.
+    ```
 
 ### Step 5 - Access the Chatbot from Existing Web Site
 
@@ -200,7 +231,7 @@ Add your assistant to your company website as a web chat widget that can help yo
 
 When you create a web chat integration, code is generated that calls a script that is written in JavaScript. The script instantiates a unique instance of your assistant. You can then copy and paste the HTML script element into any page or pages on your website where you want users to be able to ask your assistant for help.
 
->Note: This integration is available to Plus or Premium plan users only.
+>Note: This integration is available to Plus or Premium plan users only in the past.
 
 1. Login to [IBM Cloud](https://cloud.ibm.com).
 
@@ -210,13 +241,11 @@ When you create a web chat integration, code is generated that calls a script th
 
 1. Select the `Assistants` tab in the left navigation tab.
 
-1. Select `Burger-Advanced`.
+1. Select `Banking-Advanced`.
 
     !["Preview link"](docs/images/assistant02.png)
 
-1. Click `Integrated web chat` link.
-
-1. Click `Create`.
+1. Click `Web chat` link.
 
 1. Navigate to `Embed` tab.
 
@@ -226,7 +255,7 @@ When you create a web chat integration, code is generated that calls a script th
 
 1. Copy the script.
 
-1. Open file `sample_homepage.html` in a file editor. The file locates in the root folder of the downloaded repo. This sample HTML file is used to similate a company web page.
+1. Open file `sample_homepage.html` in a file editor. The file locates in the root folder of the downloaded repo. This sample HTML file is used to simulate a company web page.
 
 1. Past the script under the section `<!-- copied script elements -->`. 
 
@@ -271,22 +300,37 @@ When you create a web chat integration, code is generated that calls a script th
     !["Embeded web chat"](docs/images/embed-web-chat03.png)
 
 
-### Step 6 - Modifying Advanced Dialog Skills
+### Step 6 - Modifying Dialog Skills
 
-A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally. In this section, you are going to modify the sample skill slightly to help you understand how the chatbot works.
+In this section, you are going to add `New account` service to the chatbot. This use case should help better understand how the chatbot works.
 
 The natural-language processing for the Watson Assistant service is defined in a dialog skill, which is a container for all of the artifacts that define a conversation flow.
 
+#### Step 6.1 - Use Case
 
-#### 6.1 Intents
+To add the `New account` service, you'll need to create a new intent `newaccount`. The new `intent` identifies the end users' intention to trigger the new `New account` service.
+
+For the discussion of the use case, let's assume that two pieces of information must be collected before a new account can be created.
+- personal vs business account 
+- account type: saving account, checking accoiunt or credit card account
+
+To collect these two information, you are going to create two `entities`.
+- personalBusiness
+- accountType
+
+Then, a new node will be added to the Skill Dialog. It controls the flow of new service.
+
+Before the new service goes alive, the Watson Assistant will re-train the chatbot after the new `intent`, `entities` and `Dialog` are created. After that, the chatbot will be able to identify the new `intent`, and understand how to identify and collect the new `entities`, and guide end users through the conversation. 
+
+#### Step 6.2 - Intents
 
 Intents are purposes or goals that are expressed in a customer's input, such as answering a question or processing a bill payment. By recognizing the intent expressed in a customer's input, the Watson Assistant service can choose the correct dialog flow for responding to it.
 
-##### 6.1.1 Plan the intents for your application.
+##### Step 6.2.1 - Plan the intents for your application.
 
 Consider what your customers might want to do, and what you want your application to be able to handle on their behalf. For example, you might want your application to help your customers make a purchase. If so, you can add a #buy_something intent. (The # that is added as a prefix to the intent name helps to clearly identify it as an intent.)
 
-##### 6.1.2 Teach Watson about your intents.
+##### Step 6.2.2 - Teach Watson about your intents.
 
 After you decide which business requests that you want your application to handle for your customers, you must teach Watson about them. For each business goal (such as #buy_something), you must provide at least 5 examples of utterances that your customers typically use to indicate their goal. For example, I want to make a purchase.
 
@@ -296,9 +340,9 @@ The examples that you provide are used by your assistant to build a machine lear
 
 `intent` is verb in a natural language analogy.
 
-##### 6.1.3 Adding utterance to #order intent
+##### Step 6.2.3 - Creating #newaccount intent and adding its utterance
 
-To add utterance to `#order` intent,
+To add utterance to `#newaccount` intent,
 
 1. Login to [IBM Cloud](https://cloud.ibm.com).
 
@@ -308,26 +352,42 @@ To add utterance to `#order` intent,
 
 1. Select the `Skills` tab in the left navigation tab.
 
-1. Select `watson-burger` tile.
+1. Select `watson-banking` tile.
 
 1. `Intents` is selected by default.
 
-1. Select `#order` intent on the right.
+1. Select `Create intent +` button.
 
-1. Enter `I like to have a cheeseburger` in the `User example` field.
+1. Enter `newaccount` as the `Intent name`.
+
+    > Note: Prefix `#` is added. All intents are prefixed by `#`.
+
+1. Click `Create intent` button to create the `newaccount` intent.
+
+1. Then, you must add at least five user examples to help Watson understand the new `intent`.
+
+    - Enter `I like to open a new credit card` in the `User example` field.
+    - Click `Add example` button.
+    - Repeat the same steps to add a few more examples.
+        * `new business account`
+        * `new personal account`
+        * `open a checking account`
+        * `open a new account`
+        * `open a saving account`
+    - Feel free to add additional examples of your choice
+
+1. Your new `intent` should look like this.
 
    !["Intent Example"](docs/images/intent_example01.png)
 
-1. Click `Add example`. 
+`watson-banking` was developed as a skill to handle typical banking tasks. Except the typical house-keeping intents, such as `#exit`, `#help` and `#reset`, other intents include `#branchinfo`, `#changeprofile`, `#login` and `#wirefund`.
 
-`watson-burger` was developed as a skill to order burgers, drinks and etc. `#order` is the main `intent` along with the typical house-keeping intents, `#exit`, `#help` and `#reset`.
+You can add as many utterance examples for each `intent` as you like, but minimal 5 examples. The objective of the `newaccount` intent is to identify the attempt to trigger the new account service. The utterance examples are provided to meet the objective.
 
-You can add as many utterance examples as you like, but minimal 5 examples. In this skill design, the objective is to catch the `#order` intent as well as to identify the food category, such as burger, drink, shake and so on. The utterance examples are provided to meet the objective.
-
-You may redesign the skill if you like to implement it differently.
+You may redesign the `intent` if you like to implement it differently.
 
 
-#### 6.2 Entities
+#### Step 6.3 - Entities
 
 Entities represent information in the user input that is relevant to the user's purpose.
 
@@ -339,7 +399,7 @@ You can add multiple responses to your dialog tree with wording that differs bas
 
 `entity` is noun in a natural language analogy.
 
-##### 6.2.1 Dictionary-based method
+##### Step 6.3.1 - Dictionary-based method
 
 Your assistant looks for terms in the user input that match the values, synonyms, or patterns you define for the entity.
 
@@ -353,7 +413,7 @@ Your assistant looks for terms in the user input that match the values, synonyms
 
 * System entity: Synonym entities that are prebuilt for you by IBM. They cover commonly used categories, such as numbers, dates, and times. You simply enable a system entity to start using it.
 
-##### 6.2.2 Annotation-based method
+##### Step 6.3.2 - Annotation-based method
 
 When you define an annotation-based entity, which is also referred to as a contextual entity, a model is trained on both the annotated term and the context in which the term is used in the sentence you annotate. This new contextual entity model enables your assistant to calculate a confidence score that identifies how likely a word or phrase is to be an instance of an entity, based on how it is used in the user input.
 
@@ -367,9 +427,15 @@ When you define an annotation-based entity, which is also referred to as a conte
 
     If you choose to define entity values by using annotations, add at least 10 annotations per entity to give the contextual entity model enough data to be reliable.
 
-##### 6.2.3 Modifying Entity @beverage
+##### Step 6.3.3 - Creating Entity
 
-To modify entity `@beverage`,
+You create two entities for the `new account` service in this section. They help identify two kind of account types.
+- personal vs business
+- saving, checking and credit card account
+
+###### Step 6.3.3.1 - Creating entity `@personalBusiness`
+
+To modify entity `@personalBusiness`,
 
 1. Login to [IBM Cloud](https://cloud.ibm.com).
 
@@ -379,30 +445,82 @@ To modify entity `@beverage`,
 
 1. Select the `Skills` tab in the left navigation tab.
 
-1. Select `watson-burger` tile.
+1. Select `watson-banking` tile.
 
 1. Select `Entities` in the left navigation pane.
 
-1. Select `@beverage` in the right window.
+1. Select `Create entity` button.
 
-1. Enter `milk` in the `value` field.
+1. Enter `personalBusiness` in the `Entity name` field.
 
-1. Enter `low fat milk` in the `Synonyms` field.
+    > Note: Prefix `@` is added to all entities.
+
+1. Click `Create entity` button.
+
+1. Enter `business` in the `Value` field.
+
+1. Enter `business account` in the `Synonyms` field.
 
 1. Optionally, you can add additional synonyms.
+
+1. Click `Add value` button.
+
+1. Enter `personal` in the `Value` field.
+
+1. Enter `personal account` in the `Synonyms` field.
 
    !["Intent Example"](docs/images/entity01.png)
 
 1. Click `Add value`.
 
-Skill `watson-burger` was designed to process orders in two phases. In the initial phase, it catches the user `intent` and also identifies food category. 
+###### Step 6.3.3.2 - Creating entity `@accountType`
 
-In the next phase, the chatbot collects information for individual food category via different dialog path. In the above `entity` example, it works to identify the drink type
+To modify entity `@accountType`,
 
-`Entity` helps identify all required information until you are ready to complete an order. In the drink example, entity `@beverage` helps identify drink type information, and entity `@mac_size` helps identify drink size information. You can have additional `entity` to collect other information.
+1. Login to [IBM Cloud](https://cloud.ibm.com).
+
+1. On the dashboard, find and open your `Watson Assistant` service instance.
+
+1. Click `Launch Watson Assistant` on the `Manage` tab.
+
+1. Select the `Skills` tab in the left navigation tab.
+
+1. Select `watson-banking` tile.
+
+1. Select `Entities` in the left navigation pane.
+
+1. Select `Create entity` button.
+
+1. Enter `accountType` in the `Entity name` field.
+
+    > Note: Prefix `@` is added to all entities.
+
+1. Click `Create entity` button.
+
+1. Enter `checking account` in the `Value` field.
+
+1. Enter `checking` in the `Synonyms` field.
+
+1. Optionally, you can add additional synonyms.
+
+1. Click `Add value` button.
+
+1. Enter `saving account` in the `Value` field.
+
+1. Enter `saving` in the `Synonyms` field.
+
+1. Click `Add value` button.
+
+1. Enter `credit card account` in the `Value` field.
+
+1. Enter `credit card` in the `Synonyms` field.
+
+   !["Intent Example"](docs/images/entity02.png)
+
+1. Click `Add value`.
 
 
-#### 6.3 Dialog
+#### Step 6.4 - Dialog
 
 The dialog uses the intents that are identified in the user's input, plus context from the application, to interact with the user and ultimately provide a useful response.
 
@@ -410,7 +528,7 @@ The dialog matches intents (what users say) to responses (what the bot says back
 
 The dialog is represented graphically in Watson Assistant as a tree. Create a branch to process each intent that you want your conversation to handle. A branch is composed of multiple nodes.
 
-##### 6.3.1 Dialog nodes
+##### Step 6.4.1 - Dialog nodes
 
 Each dialog node contains, at a minimum, a condition and a response.
 
@@ -422,7 +540,7 @@ You can think of the node as having an if/then construction: if this condition i
 
 !["Intent Example"](docs/images/dialog_node01.png)
 
-##### 6.3.2 Dialog flow
+##### Step 6.4.2 - Dialog flow
 
 The dialog that you create is processed by your assistant from the first node in the tree to the last.
 
@@ -446,80 +564,13 @@ You can disrupt the standard first-to-last flow in the following ways:
 
 * By configuring digression settings for dialog nodes. Digressions can also impact how users move through the nodes at run time. If you enable digressions away from most nodes and configure returns, users can jump from one node to another and back again more easily. 
 
-##### 6.3.3 Reviewing Dialog Flow of Skill watson-burger
+##### Step 6.4.3 - Modifying Dialog Flow of Skill watson-banking
 
-In this section, you explore dialog flow of the skill `watson-burger`.
+By now, you have basic understanding of `intent` and `entity`, and how `dialog` defines the chatbot flow. In this section, you modify the `dialog` to make the `new account` service available in the chatbot.
 
-* The dialog flow of `watson-burger` skill has 4 root nodes that match their condition to the 4 `intents` that you defined in the skill. When the chatbot catches your intent through a conversation, it continues the comversation via one of the node branches.
+###### Step 6.4.3.1 - Modifying "Welcome" node of Skill watson-banking
 
-    !["watson-burger Example"](docs/images/advanced_dialog_flow01.png)
-
-    Since `watson-burger` skill is designed for food ordering, most of actions are defined in `Order` node branch. The other 3 root nodes do not have child.
-
-* Select the `Welcomeadvanced` node. Its properies show up in the pop-up window on the right. The chatbot enters this node only when it identifies `@order` intent which is the starting point of an ordering conversation.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow20.png)
-
-    - When a new ordering starts, the chatbot displays `Welcome to basic burger chatbot demonstration, you can order burgers, drinks and shakes from menu. Ask for Help if needed. <br><br>`. Note that `HTML` tags are used to help format the messages.
-
-    - Next, the chatbot displays a `Image` to help beautify the UI. https://raw.githubusercontent.com/lee-zhg/burger-hackathon/master/images/combined.png.
-
-    - Then, it displays a list of `Option` which appear as buttons in the chatbot.
-
-    - After the initial messages, images and buttons are displayed, the chatbot waits for end user input. The input can be in the form of end user's typing or the button clicking.
-
-* Select the `Order` node, its properies show up in the pop-up window on the right. The chatbot enters this node only when it identifies `@order` intent.
-
-* Expand the `Order` node branch. It has 5 child nodes.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow02.png)
-
-* Select the `else` child node. As the node label indicates, this is a catch-all node. Just like the `else` in a `if-else` statement. If the condition does not satify all nodes above, the flow will reach this node. 
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow03.png)
-
-    - The `else` node responds with message `The chatbot is not trained to take this order` and then jumps to the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
-
-* Select `order burger` child node. Its properies show up in the pop-up wiindow on the right.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow04.png)
-
-    - In order to have the `order burger` child node triggered, two condition must be met.
-        * Intent is `#order`
-        * Entity `@category` has `burger` as its content
-
-    - The child node collects two pieces of information.
-        * Entity `@burger` which is used to identify the burger type
-        * Entity `@mac_place` which is used to identify the dining location, dine-in or to-go.
-
-    * To help reduce the number of nodes, two slots are used to collect both inforrmation on a single node. Without using slots, two nodes would be required to collect two pieces of information.
-
-    * Click the `configuration` icon to the right of `@burger` to open its slot property.
-
-        !["watson-burger Example"](docs/images/advanced_dialog_flow05.png)
-
-        - It checks if the entity `@burger` has `burger type` information. If the information is not available, the chatbot will prompt user with message `What type of burger do you want (big mac, cheeseburger, double cheeseburger and etc)?`. 
-        - A list of `Option` are made available for end users to choose from. Because there are 9 burger types are presented in this case, the list will show up as a `dropdown list` in the chatbot. When there are less than 5 items on the list, they are displayed as buttons. It's possible to force the display button or dropdown list via direct change to JSON configuration. See detail at [Watson Assistant Advance settings - Implementing responses](https://cloud.ibm.com/docs/assistant?topic=assistant-api-dialog-responses).
-        - When the entity `@burger` has `burger type` information, it stores data in context variable `$mac_burger`.
-
-        !["watson-burger Example"](docs/images/advanced_dialog_flow21.png)
-
-    * The second slot works similarly. 
-        - It checks if the entity `@mac_place` has `dining location` information. 
-        - If the information is not available, the chatbot will prompt user with message `Is this for dine in or to go?`. And `Dine in` snd `To go` buttons appears as options.
-        - When the entity `@mac_place` has `dining location` information, it stores data in context variable `$mac_place`.
-
-        !["watson-burger Example"](docs/images/advanced_dialog_flow22.png)
-
-    * When both entity `$mac_burger` and `$mac_place` are populated, you have the burger type as well as dining location information. At this time, you can complete the order. The chatbot displays message `Enjoy your $mac_burger. We are preparing your $mac_place order`. Note, context variable `$mac_burger` and `$mac_place` are used for meaningful message in the current context.
-
-    * When you develop an application that combines a chatbot and order processing, at this point you can pass both context variables `$mac_burger` and `$mac_place` to your order processing module of your application. Of course, a real food ordering application will require and collect additional information. But, the same principle applies. The sample application embedded in the repo sheds light on how you may develop an application taking advantage of Watson chatbot.
-
-    * When the `order burger` child node reaches its end, it'll move to the following child node if you don't do anything. Because the current order has completed, you like to reset the environment context and be ready to take the next order. So, the last configuration of the `order burger` child node is to `Jumps to` the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
-
-##### 6.3.4 Modifying Dialog Flow of Skill watson-burger
-
-Now, you should have a basic understanding of `intent` and `entity`, and how `dialog` defines the chatbot flow. In this section, you add a new slot to the child node `order burger` which identifies and collects `burger size` information.
+In this section, you modify the `Welcome` node and make the `New account` task option available when the chatbot is initiated.
 
 1. Login to [IBM Cloud](https://cloud.ibm.com).
 
@@ -533,68 +584,167 @@ Now, you should have a basic understanding of `intent` and `entity`, and how `di
 
 1. Select `Dialog` in the left pane.
 
-1. Expand the `Order` node.
+1. Click the `Welcome` node to open its property window.
 
-1. Select `Order burger` node. The node properties window opens on the right.
+1. Scroll down until you find the `Option` reponse type which has title `How can I help?`.
 
-    !["watson-burger Example"](docs/images/advanced_dialog_flow06.png)
+    !["Welcome node"](docs/images/dialog_node_welcome01.png)
 
-1. Click `Add slot +`. A new blank slot is added to the list.
+1. Click `Add option +` link.
 
-    !["watson-burger Example"](docs/images/advanced_dialog_flow07.png)
+1. Enter `New account` in both `Enter lab` and `Enter value` field.
 
-1. On the new blank slot entry, click `Enter condition` field.
+1. Tab out both fields.
 
-    !["watson-burger Example"](docs/images/advanced_dialog_flow08.png)
+    !["Welcome node"](docs/images/dialog_node_welcome02.png)
 
-1. Select `Filter by @entity` option.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow09.png)
-
-1. Then, select `@mac_size  medium, small, large` option.
-
-1. Enter `$mac_burger_size` in the `Save it as` field of the new slot entry.
-
-1. Click the `configuration` icon of the new slot entry. The slot's properties pop-up window appears.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow23.png)
-
-1. In the middle section of the pop-up window, it is the `If slot context variable is not present ask:` section. By default, an blank entry of `Text` response type is added.
-
-1. Enter `Please select your burger size (large, medium or small)` in the `Text` response field of the new slot entry.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow24.png)
-
-1. Click `Add reponse type` link.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow25.png)
-
-1. Select the `Option` type from the dropdown list.
-
-1. In the option `Title` field, enter `Select burger size`.
-
-1. Click `Add option` link.
-
-1. Enter `Large` in both `List label` and `Value` field.
-
-1. Click `Add option` link.
-
-1. Enter `Medium` in both `List label` and `Value` field.
-
-1. Click `Add option` link.
-
-1. Enter `Small` in both `List label` and `Value` field.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow26.png)
-
-1. Click `Save`.
-
-    !["watson-burger Example"](docs/images/advanced_dialog_flow10.png)
-
-1. Hover your mouse curser over `3` of the new slot entry and select `Move up` link. This moves the new slot entry to the 2nd place of the list.
+1. The `New account` task option is avialble when the chatbot restarts.
 
 
-#### 6.4 Try it
+###### Step 6.4.3.2 - Adding "New Account" node to Skill watson-banking
+
+In this section, you modify the `New Account` node. This node provides support to the conversation flow when `New account` intent is identified.
+
+1. Select `3 dots` on the `Wiring Funds` node.
+
+    !["New Account node"](docs/images/dialog_node_newaccount01.png)
+
+1. Select `Add node below` menu option from the pop-up menu.
+
+1. Enter `New Account` in the top field of the new node property window.
+
+    !["New Account node"](docs/images/dialog_node_newaccount02.png)
+
+1. Click the `Customize` link next to the `New Account` field.
+
+1. Turn on the `Slot` feature.
+
+    !["New Account node"](docs/images/dialog_node_newaccount03.png)
+
+1. Click `Apply` to close the `Customize "New Account"` window.
+
+1. In the `If assistant recognizes` field, enter `#newaccount`. This sets the node condition to true only when `#newaccount` is the intent. In another word, you only come into this node when the intent is `#newaccount`.
+
+1. When the slot is enabled for a node, a new section `Then check for` is added to the node properties window. You may configure slot(s) in this section. And the section has the `Customize slot` icon.
+
+    !["New Account node"](docs/images/dialog_node_newaccount04.png)
+
+1. Click the `Customize slot` icon of new section to open the `Configure slot 1` window.
+
+    !["New Account node"](docs/images/dialog_node_newaccount05.png)
+
+1. In the `Check for` field, enter `@personalBusiness`.
+
+1. In the `Save it as` field, enter `$personalBusiness`.
+
+    !["New Account node"](docs/images/dialog_node_newaccount06.png)
+
+1. In the `If slot context variable is not present ask:` section, click the dropdown list which is currently labeled as `Text`.
+
+1. Select the `Option` menu option.
+
+    !["New Account node"](docs/images/dialog_node_newaccount07.png)
+
+1. Expand the `If slot context variable is not present ask:` section by clicking the `down arraw` icon next to the trash can.
+
+    !["New Account node"](docs/images/dialog_node_newaccount08.png)
+
+1. In the `Title` field, enter `Is this for personal or business?`.
+
+    !["New Account node"](docs/images/dialog_node_newaccount09.png)
+
+1. Click `Add option +` link.
+
+1. Enter `Personal` in both `Enter label` and `Enter value` fields.
+
+1. Click `Add option +` link.
+
+1. Enter `Business` in both `Enter label` and `Enter value` fields.
+
+1. You have configured the first slot for the `New account` service. It checks if entity `@personalBusiness` is available. If end users have provided the information, it's stored in context variable `$personalBusiness`. Otherwise, the end users will be prompted to enter the information. The chatbot is also configured to provide two buttons of `Personal` and `Business` for the end users to choose.
+
+    !["New Account node"](docs/images/dialog_node_newaccount10.png)
+
+1. Select `Save` to save the slot. You are back to the `New account` properties window.
+
+    !["New Account node"](docs/images/dialog_node_newaccount11.png)
+
+1. Select `Add slot +` to add a new slot.
+
+    !["New Account node"](docs/images/dialog_node_newaccount12.png)
+
+1. Click the `Customize slot` icon of the new slot to open the `Configure slot 2` window.
+
+1. In the `Check for` field, enter `@accountType`.
+
+1. In the `Save it as` field, enter `$accountType`.
+
+1. In the `If slot context variable is not present ask:` section, click the dropdown list which is currently labeled as `Text`.
+
+1. Select the `Option` menu option.
+
+1. Expand the `If slot context variable is not present ask:` section by clicking the `down arraw` icon next to the trash can.
+
+1. In the `Title` field, enter `What type of bank account do you like to open?`.
+
+1. Click `Add option +` link.
+
+1. Enter `Saving account` in both `Enter label` and `Enter value` fields.
+
+1. Click `Add option +` link.
+
+1. Enter `Checking account` in both `Enter label` and `Enter value` fields.
+
+1. Click `Add option +` link.
+
+1. Enter `Credit card account` in both `Enter label` and `Enter value` fields.
+
+1. You have configured the second slot for the `New account` service. It checks if entity `@accountType` is available. If end users have provided the information, it's stored in context variable `$accountType`. Otherwise, the end users will be prompted to enter the information. The chatbot is also configured to provide three buttons of `Saving accont`, `Checking account` and `Credit card account` for the end users to choose.
+
+    !["New Account node"](docs/images/dialog_node_newaccount13.png)
+
+1. Select `Save` to save the slot. You are back to the `New account` properties window.
+
+    !["New Account node"](docs/images/dialog_node_newaccount14.png)
+
+1. In the `Assistant responds` section, enter `Thank you for banking with us. New $personalBusiness $accountType was opened` in the `Enter reponse text` field.
+
+1. Tab out the field. A new `response variation` field is added on the screen.
+
+    !["New Account node"](docs/images/dialog_node_newaccount15.png)
+
+1. The `response variation` displays alternative response from conversation to conversation. It's not required, but helps make the conversation more interesting. The sequence of response displaying can be set to `sequential` or `random`.
+
+1. Enter `New $personalBusiness $accountType was opened. Do you need anything else?` in the `Enter response variation` field.
+
+    !["New Account node"](docs/images/dialog_node_newaccount16.png)
+
+1. Optionally, you may add additional `response variation`.
+
+1. Scroll down to the bottom of the `New Account` node properties window. The last section defines what the chatbot should do after the current node is processed. By default, it's set to `Wait for reply` option.
+
+    There are three possible options. Depending on the circumstance, you may see two options.
+
+    - Wait for user input: Your assistant pauses until new input is provided by the user.
+    - Skip user input: Your assistant jumps directly to the first child node. This option is only available if the current node has at least one child node.
+    - Jump to: Your assistant continues the dialog by processing the node you specify. You can choose whether your assistant should evaluate the target node's condition or skip directly to the target node's response. 
+
+1. Click the dropdown menu and select `Jump to` option.
+
+1. Select `Reset` node. 
+
+    !["New Account node"](docs/images/dialog_node_newaccount17.png)
+
+1. Another pop-up window with three options appears.
+
+1. Select `Respond` option.
+
+    !["New Account node"](docs/images/dialog_node_newaccount18.png)
+
+1. This concludes the `New Account` node configuration.
+
+
+#### Step 6.5 - Try it
 
 So far, you have tested the chatbot via the `assistant` preview (a fully hosted chatbot that is managed by IBM Cloud). In this section, you test the chatbot via `Try it` link which is an integrated component of Watson Assistant development environment in IBM Cloud.
 
@@ -614,71 +764,94 @@ To test the chatbot via `try it` link,
 
 1. Select the `Skills` tab in the left navigation tab.
 
-1. Select `watson-burger` tile to open it.
+1. Select `watson-banking` tile to open it.
 
 1. Click `Try it` link. The "Try it out` window open on the right. 
 
     !["watson-burger Example"](docs/images/try_it20.png)
 
-1. The chatbot displays the greeting and show a list of items to order. Remember, when you tested the chatbot via `assistant preview link` environment, the list of items were displayed as `buttons`.
+1. The chatbot displays the greeting and show a list of services. 
 
-1. Click `Burger` link. The chatbot types in `Order Burger` for you.
+##### Step 6.5.1 - Test Case #1
 
-1. Then, the chatbot replies
+1. Click `New account` task. The chatbot types in `New account` for you.
+
+1. Then, the chatbot understands your `newaccount` intent and prompts for additional information required for openning new account. It collects `@personalBusiness` entity by prompting
 
     ```
-    Thank you for your ordering.
-    What type of burger do you want (big mac, cheeseburger, double cheeseburger and etc)?
+    Is this for personal or business?
+    * Personal
+    * Business
     ```
 
-1. The chatbot also presents a burger type `dropdown list`.
+1. You may choose to type information any time you like. However, the chatbot presents an alternative for easy data entry.
+
+1. Select the `Personal` from the list.
+
+1. Next, the chatbot collects information of `@accountType` entity.
+
+    ```
+    What type of bank account do you like to open?
+    * Saving account
+    * Checking account
+    * Credit card account
+    ```
+
+1. Select `Saving account` option.
+
+1. The chatbot has successfully collected two information required to open a new account. It displays message below to mark the end of the conversation.
+
+    ```
+    Thank you for banking with us. New personal saving account was opened.
+    ```
+
+    >**Note**: In the real world use case, the chatbot will pass the collected information to the back end service(s) to complete the `New account` transaction at this point. Integrating chatbot with other services/systems is not covered in this repo.
+
+##### Step 6.5.2 - Test Case #2
+
+1. If you prefer to provide all required information when talking to the chatbot, you can feel free to type a complete sentence. For example, `Open a new personal saving account please`.
+
+1. The chatbot parses the sentence and extracts useful information. It recognizes that it has all required information. So, it completes the conversation by displaying a message.
+
+    ```
+    Thank you for banking with us. New personal saving account was opened.
+    ```
 
     !["watson-burger Example"](docs/images/try_it21.png)
 
-1. Select the `Cheese Burger` from the list.
+1. The `New Account` node required both `@personalBusiness` and `@accountType`. Since you provided both required information when you make request, the chatbot grabs all required information and complete the conversation. 
 
-1. Next, the chatbot collects `burger size` information. 
+1. The `intent` and `entity` information in the current context are available on the `Try it` UI. As the above screen shot shows, the chatbot identified
+    * `#newaccount` as intent
+    * entity `@personalBusiness` as `personal`. 
+    * entity `@accountType` as `saving account`.
 
-1. Select `Large` option.
+##### Step 6.5.3 - Test Case #3
 
-1. Then, the chatbot collects dining location information and ask `Is this for dine in or to go?`
+1. You can also provide partial required information when talking to the chatbot. For example, `Open a new business account please`.
 
-1. Select `To go` option.
-
-1. Now, the chatbot has all required information and completes the order by displaying 
-
-    ```
-    Enjoy your cheeseburger. We are preparing your to-go order
-    ```
-    >**Note**: The chatbot completes the order by displaying the message in larger font. It's possible to use HTML tags to format the messages. This can be done by directly editing JSON obejcts. However, it's up to your application to render the HTML tags properly.
-
-##### Order #2
-
-1. If you prefer to provide all required information when making a purchase, you can type a complete sentence. For example, `have a large cheeseburger to go`.
-
-1. The chatbot parses the sentence and extracts useful information. It recognizes that it has all required information. So, it completes the order by displaying a message.
-
-    ```
-    Thank you for your ordering.
-    Enjoy your hamburger. We are preparing your to-go order
-    ```
+1. The chatbot parses the sentence and extracts useful information. It recognizes
+    * `#newaccount` as intent
+    * entity `@personalBusiness` as `personal`. 
 
     !["watson-burger Example"](docs/images/try_it22.png)
 
-1. The original `order burger` node required both `burger type` and `dining location`. Then, you added a third required information as `burger size` in the last exercise. Since you provided all 3 required information when you make order, the chatbot grabs all required information and complete the order. It displays message `Enjoy your cheeseburger. We are preparing your to-go order`. 
+1. Next, the chatbot collects information of `@accountType` entity.
 
-10. The `intent` and `entity` information in the current context are available on the `Try it` UI. As the above screen shot shows, the chatbot identified
-    * `#order` as intent
-    * entity `@mac_size` as `large`. This entity identifies `burger size`.
-    * entity `@category` as `burger`. This entity identifies `food category`.
-    * entity `@burger` as `cheeseburger`. This entity identifies `burger type`.
-    * entity `@mac_place` as `to-go`. This entity identified `dining location`.
+    ```
+    What type of bank account do you like to open?
+    * Saving account
+    * Checking account
+    * Credit card account
+    ```
 
-##### Order #3
+1. Select `Checking account` option.
 
-1. For the next order, order a big mac by entering `have a hamburger please`.
+1. Now, the chatbot has has all required information to open a new account. It displays message below to mark the end of the conversation.
 
-1. Because two of the three required information are missing, now you'll be prompted twice to provide `burger size` and `dining location` information.
+    ```
+    Thank you for banking with us. New business checking account was opened.
+    ```
 
 
 ## License
