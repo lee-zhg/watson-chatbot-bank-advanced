@@ -366,7 +366,7 @@ To add utterance to `#newaccount` intent,
 
 1. Then, you must add at least five user examples to help Watson understand the new `intent`.
 
-    - Enter `I like to open a new credit card` in the `User example` field.
+    - Enter `I like to open a new credit card account` in the `User example` field.
     - Click `Add example` button.
     - Repeat the same steps to add a few more examples.
         * `new business account`
