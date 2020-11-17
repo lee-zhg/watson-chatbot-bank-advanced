@@ -128,30 +128,6 @@
       "description": ""
     },
     {
-      "intent": "newaccount",
-      "examples": [
-        {
-          "text": "I like to open a new credit card"
-        },
-        {
-          "text": "new business account"
-        },
-        {
-          "text": "new personal account"
-        },
-        {
-          "text": "open a checking account"
-        },
-        {
-          "text": "open a new account"
-        },
-        {
-          "text": "open a saving account"
-        }
-      ],
-      "description": ""
-    },
-    {
       "intent": "reset",
       "examples": [
         {
@@ -211,72 +187,8 @@
       "fuzzy_match": true
     },
     {
-      "entity": "accountType",
-      "values": [
-        {
-          "type": "synonyms",
-          "value": "business checking account",
-          "synonyms": [
-            "business checking",
-            "businesscheckingaccount"
-          ]
-        },
-        {
-          "type": "synonyms",
-          "value": "business credit card account",
-          "synonyms": [
-            "Business credit card",
-            "businesscreditcardaccount"
-          ]
-        },
-        {
-          "type": "synonyms",
-          "value": "business saving account",
-          "synonyms": [
-            "business saving",
-            "businesssavingaccount"
-          ]
-        },
-        {
-          "type": "synonyms",
-          "value": "checking account",
-          "synonyms": [
-            "checking",
-            "checkingAccount",
-            "personal checking account"
-          ]
-        },
-        {
-          "type": "synonyms",
-          "value": "credit card",
-          "synonyms": [
-            "creditCard",
-            "credit card account",
-            "persona credit  card account"
-          ]
-        },
-        {
-          "type": "synonyms",
-          "value": "saving account",
-          "synonyms": [
-            "personal saving account",
-            "saving",
-            "savingAccount"
-          ]
-        }
-      ],
-      "fuzzy_match": true
-    },
-    {
       "entity": "contactInfo",
       "values": [
-        {
-          "type": "patterns",
-          "value": "address",
-          "patterns": [
-            "\\b[A-Za-z0-9]"
-          ]
-        },
         {
           "type": "patterns",
           "value": "email",
@@ -382,89 +294,45 @@
     },
     {
       "type": "event_handler",
-      "output": {},
-      "parent": "slot_8_1605039612816",
-      "context": {
-        "accountType": "@accountType"
-      },
-      "conditions": "@accountType",
-      "event_name": "input",
-      "dialog_node": "handler_2_1605039612830"
-    },
-    {
-      "type": "event_handler",
       "output": {
         "generic": [
           {
             "values": [
               {
-                "text": "What type of bank account do you like to have?"
+                "text": "Please enter the zipcode where the branch office locates"
               }
             ],
             "response_type": "text",
             "selection_policy": "sequential"
           },
           {
-            "title": "Select account type of the new account",
+            "title": "Please select zipcode",
             "options": [
               {
-                "label": "Personal saving account",
+                "label": "15202",
                 "value": {
                   "input": {
-                    "text": "Personal saving account"
+                    "text": "15202"
                   }
                 }
               },
               {
-                "label": "Personal checking account",
+                "label": "15209",
                 "value": {
                   "input": {
-                    "text": "Personal checking account"
-                  }
-                }
-              },
-              {
-                "label": "Personal credit card account",
-                "value": {
-                  "input": {
-                    "text": "Personal credit card account"
-                  }
-                }
-              },
-              {
-                "label": "Business saving account",
-                "value": {
-                  "input": {
-                    "text": "Business saving account"
-                  }
-                }
-              },
-              {
-                "label": "Business checking account",
-                "value": {
-                  "input": {
-                    "text": "Business checking account"
-                  }
-                }
-              },
-              {
-                "label": "Business credit card account",
-                "value": {
-                  "input": {
-                    "text": "Business credit card account"
+                    "text": "15209"
                   }
                 }
               }
             ],
-            "description": "",
             "response_type": "option"
           }
         ]
       },
-      "parent": "slot_8_1605039612816",
+      "parent": "slot_5_1605549704545",
       "event_name": "focus",
-      "dialog_node": "handler_4_1605039612830",
-      "previous_sibling": "handler_2_1605039612830"
+      "dialog_node": "handler_3_1605549704547",
+      "previous_sibling": "handler_9_1605549704547"
     },
     {
       "type": "event_handler",
@@ -524,29 +392,15 @@
       "previous_sibling": "handler_1_1605025203714"
     },
     {
-      "type": "standard",
-      "title": "Open new account",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "New @accountType was opened."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1605549704545",
+      "context": {
+        "contactInfo_zipcode": "@contactInfo:zipcode"
       },
-      "parent": "node_4_1605039578800",
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "Reset"
-      },
-      "conditions": "true",
-      "dialog_node": "node_10_1605039955582"
+      "conditions": "@contactInfo:zipcode",
+      "event_name": "input",
+      "dialog_node": "handler_9_1605549704547"
     },
     {
       "type": "standard",
@@ -580,39 +434,16 @@
       "output": {
         "generic": [
           {
-            "values": [
-              {
-                "text": "Please enter the zipcode where the branch office locates"
-              }
-            ],
+            "values": [],
             "response_type": "text",
             "selection_policy": "sequential"
-          },
-          {
-            "title": "Select zipcode",
-            "options": [
-              {
-                "label": "15202",
-                "value": {
-                  "input": {
-                    "text": "15202"
-                  }
-                }
-              },
-              {
-                "label": "15209",
-                "value": {
-                  "input": {
-                    "text": "15209"
-                  }
-                }
-              }
-            ],
-            "response_type": "option"
           }
         ]
       },
       "context": {},
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
       "conditions": "#branchinfo",
       "dialog_node": "node_1_1604959686033",
       "previous_sibling": "node_1_1604959642501"
@@ -621,28 +452,18 @@
       "type": "frame",
       "title": "Destination",
       "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": ""
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
+        "generic": []
       },
       "parent": "node_1_1604959686033",
       "context": {
-        "zipcode": "<? input.text ?>"
+        "zipcode": "@contactInfo.literal"
       },
       "next_step": {
         "behavior": "jump_to",
         "selector": "condition",
         "dialog_node": "node_1_1604963008317"
       },
-      "conditions": "true",
+      "conditions": "#branchinfo",
       "dialog_node": "node_1_1604962038565"
     },
     {
@@ -672,7 +493,8 @@
         "dialog_node": "Reset"
       },
       "conditions": "$zipcode=='15202'",
-      "dialog_node": "node_1_1604963008317"
+      "dialog_node": "node_1_1604963008317",
+      "previous_sibling": "slot_5_1605549704545"
     },
     {
       "type": "frame",
@@ -692,7 +514,7 @@
       },
       "conditions": "#changeprofile",
       "dialog_node": "node_2_1604959727837",
-      "previous_sibling": "node_4_1605039578800"
+      "previous_sibling": "node_1_1604959686033"
     },
     {
       "type": "standard",
@@ -771,28 +593,6 @@
       "dialog_node": "node_4_1605025168288"
     },
     {
-      "type": "frame",
-      "title": "New Account",
-      "output": {
-        "generic": [
-          {
-            "title": "Select account type",
-            "options": [],
-            "description": "",
-            "response_type": "option"
-          }
-        ]
-      },
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "node_10_1605039955582"
-      },
-      "conditions": "#newaccount",
-      "dialog_node": "node_4_1605039578800",
-      "previous_sibling": "node_1_1604959686033"
-    },
-    {
       "type": "standard",
       "output": {
         "generic": [
@@ -814,7 +614,7 @@
         "selector": "body",
         "dialog_node": "Reset"
       },
-      "conditions": "$zipcode",
+      "conditions": "true",
       "dialog_node": "node_7_1605017344518",
       "previous_sibling": "node_2_1604963496687"
     },
@@ -862,6 +662,8 @@
         "zipcode": null,
         "accountType": null,
         "extra_confirmed": null,
+        "personalBusiness": null,
+        "contactInfo_zipcode": null,
         "accountNumber_accoumntNumber": null
       },
       "next_step": {
@@ -922,18 +724,17 @@
     {
       "type": "slot",
       "output": {},
-      "parent": "node_4_1605025168288",
-      "variable": "$extra_confirmed",
-      "dialog_node": "slot_6_1605025203704",
-      "previous_sibling": "response_6_1605025555599"
+      "parent": "node_1_1604962038565",
+      "variable": "$contactInfo_zipcode",
+      "dialog_node": "slot_5_1605549704545"
     },
     {
       "type": "slot",
       "output": {},
-      "parent": "node_4_1605039578800",
-      "variable": "$accountType",
-      "dialog_node": "slot_8_1605039612816",
-      "previous_sibling": "node_10_1605039955582"
+      "parent": "node_4_1605025168288",
+      "variable": "$extra_confirmed",
+      "dialog_node": "slot_6_1605025203704",
+      "previous_sibling": "response_6_1605025555599"
     },
     {
       "type": "standard",
@@ -951,6 +752,10 @@
             ],
             "response_type": "text",
             "selection_policy": "sequential"
+          },
+          {
+            "source": "https://github.com/lee-zhg/watson-chatbot-bank-advanced/blob/master/data/PNC.png?raw=true",
+            "response_type": "image"
           },
           {
             "title": "How can I help?",
@@ -984,14 +789,6 @@
                 "value": {
                   "input": {
                     "text": "Wire funds"
-                  }
-                }
-              },
-              {
-                "label": "New account",
-                "value": {
-                  "input": {
-                    "text": "New account"
                   }
                 }
               }
