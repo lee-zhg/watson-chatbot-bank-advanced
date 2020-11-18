@@ -54,7 +54,9 @@ This repo is part of Watson chatbot serial. The entire serial includes
 
 Instructions and Data files in repo https://github.com/lee-zhg/watson-chatbot-bank-advanced.git will be used to build chatbot during this exercise. The repo provides a small set of Assistant Intents, Entities, and Dialog Nodes.
 
-#### Step 1.1 Download the repo
+To have the repo contents available on your local machine, you can complete the procedures in step 1.1 or step 1.2. 
+
+#### Step 1.1 - Download the repo
 
 If you don't have `git CLI` available on your local machine, you may download repo `watson-chatbot-advanced` to your local machine. 
 
@@ -66,7 +68,9 @@ If you don't have `git CLI` available on your local machine, you may download re
 
 1. Unzip the zip file and take a note of the unzip folder.
 
-#### Step 1.2 Clone the repo
+#### Step 1.2 - Clone the repo
+
+If you have completed the step 1.1, you may skip this section.
 
 If you have `git CLI` available on your local machine, you may clone repo `watson-chatbot-advanced` locally. 
 
