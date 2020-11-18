@@ -50,17 +50,37 @@ This repo is part of Watson chatbot serial. The entire serial includes
 
 ## Exercise Flow
 
-### Step 1 - Clone the repo
+### Step 1 - Clone or download  the repo
 
-To clone `watson-chatbot-advanced` locally in a terminal, run:
+Instructions and Data files in repo https://github.com/lee-zhg/watson-chatbot-bank-advanced.git will be used to build chatbot during this exercise. The repo provides a small set of Assistant Intents, Entities, and Dialog Nodes.
 
-```
-$ git clone https://github.com/lee-zhg/watson-chatbot-bank-advanced.git
+#### Step 1.1 Download the repo
 
-$ cd watson-chatbot-bank-advanced
-```
+If you don't have `git CLI` available on your local machine, you may download repo `watson-chatbot-advanced` to your local machine. 
 
-We’ll be using the file [`data/skill-watson-burger-advanced.json`](../../data/skill-watson-burger-advanced.json) to upload the Assistant Intents, Entities, and Dialog Nodes.
+1. Go to repo https://github.com/lee-zhg/watson-chatbot-bank-advanced.git in a browser.
+
+1. Select `Code` and then `Download ZIP`.
+
+    !["download repo"](docs/images/download-repo01.png)
+
+1. Unzip the zip file and take a note of the unzip folder.
+
+#### Step 1.2 Clone the repo
+
+If you have `git CLI` available on your local machine, you may clone repo `watson-chatbot-advanced` locally. 
+
+1. Start a terminal.
+
+1. Execute the command below.
+
+    ```
+    $ git clone https://github.com/lee-zhg/watson-chatbot-bank-advanced.git
+
+    $ cd watson-chatbot-bank-advanced
+    ```
+
+1. Take a note of the clone folder.
 
 
 ### Step 2 - Create Watson Assistant service in IBM Cloud
