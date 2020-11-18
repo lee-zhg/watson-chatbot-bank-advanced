@@ -110,7 +110,7 @@ Import a `skill` definition that is used by the dressed-up chatbot,
 
 1. Click the link `Drag and drop file here or click to select a file`.
 
-1. Go to your cloned repo dir, and `Open` file [`data/skill-watson-burger.json`](data/skill-watson-banking.json).
+1. Go to your cloned repo dir, and `Open` file [`data/skill-watson-banking.json`](data/skill-watson-banking.json).
 
 1. Click `Import`.
 
@@ -124,8 +124,6 @@ An assistant is a cognitive bot that you can customize for your business needs, 
 #### Step 4.1 - Dialog skill
 
 A `dialog skill` can understand and address questions or requests that your customers typically need help with. You provide information about the subjects or tasks your users ask about, and how they ask about them, and the product dynamically builds a machine learning model that is tailored to understand the same and similar user requests.
-
-A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally.
 
 #### Step 4.2 - Search skill
 
@@ -600,7 +598,7 @@ In this section, you modify the `Welcome` node and make the `New account` task o
 
 1. Select the `Skills` tab in the left navigation tab.
 
-1. Select `watson-burger` tile to open it.
+1. Select `watson-banking` tile to open it.
 
 1. Select `Dialog` in the left pane.
 
@@ -772,7 +770,7 @@ You may get slightly different UI display when you test the chatbot in differren
 
 However, `Try it` provides a quick testing option while you develop a skill.
 
-!["watson-burger Example"](docs/images/try_it01.png)
+!["watson-banking Example"](docs/images/try_it01.png)
 
 To test the chatbot via `try it` link,
 
@@ -788,7 +786,7 @@ To test the chatbot via `try it` link,
 
 1. Click `Try it` link. The "Try it out` window open on the right. 
 
-    !["watson-burger Example"](docs/images/try_it20.png)
+    !["watson-banking Example"](docs/images/try_it20.png)
 
 1. The chatbot displays the greeting and show a list of services. 
 
@@ -837,7 +835,7 @@ To test the chatbot via `try it` link,
     Thank you for banking with us. New personal saving account was opened.
     ```
 
-    !["watson-burger Example"](docs/images/try_it21.png)
+    !["watson-banking Example"](docs/images/try_it21.png)
 
 1. The `New Account` node required both `@personalBusiness` and `@accountType`. Since you provided both required information when you make request, the chatbot grabs all required information and complete the conversation. 
 
@@ -854,7 +852,7 @@ To test the chatbot via `try it` link,
     * `#newaccount` as intent
     * entity `@personalBusiness` as `personal`. 
 
-    !["watson-burger Example"](docs/images/try_it22.png)
+    !["watson-banking Example"](docs/images/try_it22.png)
 
 1. Next, the chatbot collects information of `@accountType` entity.
 
